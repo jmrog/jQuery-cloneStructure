@@ -1,5 +1,5 @@
 # jQuery-cloneStructure
-A jQuery plugin that clones only the *structure* of a jQuery collection of nodes -- i.e., only the tree of nodes itself, without any of the various classes, attributes, etc., on the elements of the tree.
+A jQuery plugin that clones only the *structure* of a jQuery collection of nodes -- i.e., only the tree of nodes itself, without any of the various classes, attributes, etc., on the elements of the tree. Optionally, the plugin can be used to remove only the `id` attributes from a collection of nodes, leaving the remaining attributes and classes (etc.) in tact.
 
 Usage
 =====
