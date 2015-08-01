@@ -18,13 +18,32 @@
 (function($) {
     'use strict';
 
-    $.fn.cloneStructure = function(withDataAndEvents, deepWithDataAndEvents) {
+    $.fn.cloneStructure = function(withDataAndEvents, deepWithDataAndEvents, removeOnlyIds) {
         var clone = $(this).clone(withDataAndEvents, deepWithDataAndEvents);
+
+        // We get a wee bit o' performance here by checking `removeOnlyIds` just once and then memoizing
+        // our `convertAttrsToArray` function appropriately.
+        var convertAttrsToArray = (function() {
+            if (removeOnlyIds) {
+                return function(attrs) {
+                    // This function returns only the "id" attribute(s) as an array.
+                    return $.grep(Array.prototype.slice.call(attrs), function(attr) {
+                        // `toLowerCase` is used here just as a precaution.
+                        return attr && attr.name && attr.name.toLowerCase() === "id";
+                    });
+                };
+            } else {
+                return function(attrs) {
+                    // This function returns all attributes as an array.
+                    return Array.prototype.slice.call(attrs);
+                }
+            }
+        })();
 
         function cleanNode() {
             var el = $(this);
-            // Creating a real array eliminates some weird issues with NamedNodeMap objects.
-            var attrs = Array.prototype.slice.call(this.attributes);
+            // Creating a real array here eliminates some weird issues with NamedNodeMap objects.
+            var attrs = convertAttrsToArray(this.attributes);
             $.each(attrs, function(idx, attr) {
                 attr && attr.name && el.removeAttr(attr.name);
             });
