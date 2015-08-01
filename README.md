@@ -44,10 +44,10 @@ var clone = myDiv.cloneStructure();
 </div>
 ```
 
-As its name indicates, `cloneStructure` will not modify the original jQuery collection.
-
 Additional Notes
 ----------------
+
+- As its name indicates, `cloneStructure` will not modify the original jQuery collection.
 
 - jQuery's `.clone` method accepts two optional arguments, `withDataAndEvents` and
 `deepWithDataAndEvents` (see here: https://api.jquery.com/clone/). `.cloneStructure` can accept
