@@ -18,8 +18,8 @@
 (function($) {
     'use strict';
 
-    $.fn.cloneStructure = function() {
-        var clone = $(this).clone();
+    $.fn.cloneStructure = function(withDataAndEvents, deepWithDataAndEvents) {
+        var clone = $(this).clone(withDataAndEvents, deepWithDataAndEvents);
 
         function cleanNode() {
             var el = $(this);
