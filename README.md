@@ -7,7 +7,7 @@ Usage
 Suppose that you begin with an arbitrary collection of nodes, e.g., one that looks like this:
 
 ```html
-<div class="some-class and-another" data-something="datum" a-random-attribute="true" style="whatever">
+<div id="myDiv" class="some-class and-another" data-something="datum" a-random-attribute="true" style="whatever">
     <h1>A Heading</h1>
     <span class="span-class">Some text here.</span>
     <ul data-listing-title="My List" role="some-role">
@@ -45,3 +45,11 @@ var clone = myDiv.cloneStructure();
 ```
 
 As its name indicates, `cloneStructure` will not modify the original jQuery collection.
+
+Additional Notes
+----------------
+
+- jQuery's `.clone` method accepts two optional arguments, `withDataAndEvents` and
+`deepWithDataAndEvents` (see here: https://api.jquery.com/clone/). `.cloneStructure` can accept
+the same arguments, which it will pass on to `.clone` to produce the expected behavior.
+
